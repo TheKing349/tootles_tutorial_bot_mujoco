@@ -193,8 +193,8 @@ def generate_launch_description():
         delay_joint_state_broadcaster_spawner,
         delay_tootles_controller_spawner,
         foxglove,
-        ekf_node,
-        slam_toolbox,
-        nav2_bringup,
-        pointcloud_to_scan,
+        # ekf_node,
+        # slam_toolbox,
+        # nav2_bringup,
+        # pointcloud_to_scan,
     ])
