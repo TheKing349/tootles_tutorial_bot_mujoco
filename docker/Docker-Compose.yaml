@@ -1,6 +1,6 @@
-name: terrence_3.0
+name: tootles
 services:
-  terrence_3.0:
+  tootles:
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -21,7 +21,7 @@ services:
         read_only: true
       - type: bind
         source: ..
-        target: /workspaces/terrence_3.0
+        target: /workspaces/tootles
         # bind:
         #   propagation: rshared
       - /tmp/.X11-unix:/tmp/.X11-unix:rw

@@ -31,58 +31,58 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBSERIAL REQUIRED libserial)
 
 add_library(
-  terrence_hwc
+  tootles_hwc
   SHARED
-  src/terrence_hwc.cpp
+  src/tootles_hwc.cpp
 )
 
-target_compile_features(terrence_hwc PUBLIC cxx_std_17)
+target_compile_features(tootles_hwc PUBLIC cxx_std_17)
 
 # IMPORTANT: include/ is now directly under this package root
-target_include_directories(terrence_hwc PUBLIC
+target_include_directories(tootles_hwc PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
 
 # LibSerial headers (PRIVATE: only your .cpp needs them)
-target_include_directories(terrence_hwc PRIVATE
+target_include_directories(tootles_hwc PRIVATE
   ${LIBSERIAL_INCLUDE_DIRS}
 )
 
 # LibSerial link dirs + libs
-target_link_directories(terrence_hwc PRIVATE
+target_link_directories(tootles_hwc PRIVATE
   ${LIBSERIAL_LIBRARY_DIRS}
 )
 
-target_link_libraries(terrence_hwc PRIVATE
+target_link_libraries(tootles_hwc PRIVATE
   ${LIBSERIAL_LIBRARIES}
 )
 
 ament_target_dependencies(
-  terrence_hwc PUBLIC
+  tootles_hwc PUBLIC
   ${THIS_PACKAGE_INCLUDE_DEPENDS}
 )
 
-pluginlib_export_plugin_description_file(hardware_interface config/terrence_hwc.xml)
+pluginlib_export_plugin_description_file(hardware_interface config/tootles_hwc.xml)
 
 # -----------------------------
 # Controller plugin (Jazzy)
 # -----------------------------
 add_library(
-  terrence_controller
+  tootles_controller
   SHARED
-  src/terrence_controller.cpp
+  src/tootles_controller.cpp
 )
 
-target_compile_features(terrence_controller PUBLIC cxx_std_17)
+target_compile_features(tootles_controller PUBLIC cxx_std_17)
 
-target_include_directories(terrence_controller PUBLIC
+target_include_directories(tootles_controller PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
 
 ament_target_dependencies(
-  terrence_controller PUBLIC
+  tootles_controller PUBLIC
   rclcpp
   rclcpp_lifecycle
   controller_interface
@@ -96,7 +96,7 @@ ament_target_dependencies(
   tf2_ros
 )
 
-pluginlib_export_plugin_description_file(controller_interface config/terrence_controller.xml)
+pluginlib_export_plugin_description_file(controller_interface config/tootles_controller.xml)
 
 # Install headers
 install(
@@ -105,16 +105,16 @@ install(
 )
 
 # Install the shared library
-install(TARGETS terrence_hwc
-  EXPORT export_terrence_hwc
+install(TARGETS tootles_hwc
+  EXPORT export_tootles_hwc
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
 )
 
 # Install controller shared library
-install(TARGETS terrence_controller
-  EXPORT export_terrence_controller
+install(TARGETS tootles_controller
+  EXPORT export_tootles_controller
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
@@ -122,12 +122,12 @@ install(TARGETS terrence_controller
 
 # Install plugin XML so hardware_interface can find it
 install(
-  # FILES config/terrence_hwc.xml
+  # FILES config/tootles_hwc.xml
   DIRECTORY config
   DESTINATION share/${PROJECT_NAME}
 )
 
-ament_export_targets(export_terrence_hwc HAS_LIBRARY_TARGET)
-ament_export_targets(export_terrence_controller HAS_LIBRARY_TARGET)
+ament_export_targets(export_tootles_hwc HAS_LIBRARY_TARGET)
+ament_export_targets(export_tootles_controller HAS_LIBRARY_TARGET)
 ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 ament_package()

@@ -81,4 +81,4 @@ RUN groupadd -g 18 hostserial || true \
 
 # Switch from root to user
 USER $USERNAME
-WORKDIR /workspaces/terrence_3.0/
+WORKDIR /workspaces/tootles/

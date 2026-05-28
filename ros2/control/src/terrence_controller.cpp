@@ -1,13 +1,13 @@
-#include "control/terrence_controller.hpp"
+#include "control/tootles_controller.hpp"
 
 #include <algorithm>
 #include <optional>
 
 #include <pluginlib/class_list_macros.hpp>
 
-namespace terrence_controller
+namespace tootles_controller
 {
-    std::string TerrenceController::modeToString(Mode m)
+    std::string TootlesController::modeToString(Mode m)
     {
         switch (m)
         {
@@ -20,7 +20,7 @@ namespace terrence_controller
         }
     }
 
-    bool TerrenceController::parseModeString(const std::string & s, Mode & out)
+    bool TootlesController::parseModeString(const std::string & s, Mode & out)
     {
         // for safety, uppercase the whole string
         auto up = s;
@@ -34,7 +34,7 @@ namespace terrence_controller
         return false;
     }
 
-    controller_interface::CallbackReturn TerrenceController::on_init()
+    controller_interface::CallbackReturn TootlesController::on_init()
     {
         try
         {
@@ -63,7 +63,7 @@ namespace terrence_controller
         return controller_interface::CallbackReturn::SUCCESS;
     }
 
-    controller_interface::InterfaceConfiguration TerrenceController::command_interface_configuration() const
+    controller_interface::InterfaceConfiguration TootlesController::command_interface_configuration() const
     {
         controller_interface::InterfaceConfiguration config;
         config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
@@ -77,7 +77,7 @@ namespace terrence_controller
         return config;
     }
 
-    controller_interface::InterfaceConfiguration TerrenceController::state_interface_configuration() const
+    controller_interface::InterfaceConfiguration TootlesController::state_interface_configuration() const
     {
         controller_interface::InterfaceConfiguration config;
         config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
@@ -94,7 +94,7 @@ namespace terrence_controller
         return config;
     }
 
-    controller_interface::CallbackReturn TerrenceController::on_configure(const rclcpp_lifecycle::State &)
+    controller_interface::CallbackReturn TootlesController::on_configure(const rclcpp_lifecycle::State &)
     {
         left_joint_name_ = get_node()->get_parameter("left_joint_name").as_string();
         right_joint_name_ = get_node()->get_parameter("right_joint_name").as_string();
@@ -156,13 +156,13 @@ namespace terrence_controller
         fault_latched_ = false;
 
         RCLCPP_INFO(get_node()->get_logger(),
-              "Configured TerrenceController. Initial mode=%s",
+              "Configured TootlesController. Initial mode=%s",
               modeToString(mode_).c_str());
         
         return controller_interface::CallbackReturn::SUCCESS;
     }
 
-    controller_interface::CallbackReturn TerrenceController::on_activate(const rclcpp_lifecycle::State &)
+    controller_interface::CallbackReturn TootlesController::on_activate(const rclcpp_lifecycle::State &)
     {
         // Cache interface indices
         left_cmd_idx_ = right_cmd_idx_ = -1;
@@ -223,22 +223,22 @@ namespace terrence_controller
         hopper_cmd_val_ = 0.0;
         enterMode(Mode::DRIVE);
 
-        RCLCPP_INFO(get_node()->get_logger(), "Activated TerrenceController.");
+        RCLCPP_INFO(get_node()->get_logger(), "Activated TootlesController.");
         return controller_interface::CallbackReturn::SUCCESS;
     }
 
-    controller_interface::CallbackReturn TerrenceController::on_deactivate(const rclcpp_lifecycle::State &)
+    controller_interface::CallbackReturn TootlesController::on_deactivate(const rclcpp_lifecycle::State &)
     {
         // Stop outputs
         setWheelCommandsRadps(0.0, 0.0);
         enterMode(Mode::IDLE);
-        RCLCPP_INFO(get_node()->get_logger(), "Deactivated TerrenceController.");
+        RCLCPP_INFO(get_node()->get_logger(), "Deactivated TootlesController.");
         return controller_interface::CallbackReturn::SUCCESS;
     }
 
     // All of the callbacks
 
-    void TerrenceController::cmdVelCb(const geometry_msgs::msg::Twist & msg)
+    void TootlesController::cmdVelCb(const geometry_msgs::msg::Twist & msg)
     {
         CmdVel c;
         c.linear_x = msg.linear.x;
@@ -248,7 +248,7 @@ namespace terrence_controller
         rt_cmd_vel_.writeFromNonRT(c);
     }
 
-    void TerrenceController::digCmdCb(const std_msgs::msg::Float64MultiArray & msg)
+    void TootlesController::digCmdCb(const std_msgs::msg::Float64MultiArray & msg)
     {
         DigCmd d;
         d.stamp = get_node()->now();
@@ -261,7 +261,7 @@ namespace terrence_controller
         rt_dig_cmd_.writeFromNonRT(d);
     }
 
-    void TerrenceController::setModeCb(const std_msgs::msg::String & msg)
+    void TootlesController::setModeCb(const std_msgs::msg::String & msg)
     {
         Mode m;
         if (!parseModeString(msg.data, m))
@@ -279,7 +279,7 @@ namespace terrence_controller
         rt_mode_req_.writeFromNonRT(r);
     }
 
-    void TerrenceController::latchFault(const std::string & reason)
+    void TootlesController::latchFault(const std::string & reason)
     {
         if (!fault_latched_)
         {
@@ -289,7 +289,7 @@ namespace terrence_controller
         }
     }
 
-    void TerrenceController::clearFault()
+    void TootlesController::clearFault()
     {
         fault_latched_ = false;
         mode_ = Mode::IDLE;
@@ -298,7 +298,7 @@ namespace terrence_controller
         setWheelCommandsRadps(0.0, 0.0);
     }
 
-    bool TerrenceController::isMovingNow() const
+    bool TootlesController::isMovingNow() const
     {
         // left/right wheel velocity
         double lv = 0.0, rv = 0.0;
@@ -326,7 +326,7 @@ namespace terrence_controller
         return (std::fabs(lv) > moving_eps_radps_) || (std::fabs(rv) > moving_eps_radps_);
     }
 
-    bool TerrenceController::canTransition(Mode from, Mode to, bool moving_now) const
+    bool TootlesController::canTransition(Mode from, Mode to, bool moving_now) const
     {
         if (from == Mode::FAULT)
         {
@@ -350,7 +350,7 @@ namespace terrence_controller
         return true;
     }
 
-    void TerrenceController::enterMode(Mode new_mode)
+    void TootlesController::enterMode(Mode new_mode)
     {
         mode_ = new_mode;
 
@@ -379,7 +379,7 @@ namespace terrence_controller
         RCLCPP_INFO(get_node()->get_logger(), "Mode -> %s", modeToString(mode_).c_str());
     }
 
-    void TerrenceController::setWheelCommandsRadps(double left_radps, double right_radps)
+    void TootlesController::setWheelCommandsRadps(double left_radps, double right_radps)
     {
         // clamp to max
         left_radps = std::clamp(left_radps, -max_wheel_radps_, max_wheel_radps_);
@@ -389,7 +389,7 @@ namespace terrence_controller
         (void)command_interfaces_[right_cmd_idx_].set_value(right_radps);
     }
 
-    void TerrenceController::computeWheelRadps(double v_mps, double w_radps, double & out_left, double & out_right) const
+    void TootlesController::computeWheelRadps(double v_mps, double w_radps, double & out_left, double & out_right) const
     {
         // Differential drive kinematics:
         // w_left = (v -  w*L/2)/R
@@ -401,7 +401,7 @@ namespace terrence_controller
     }
 
     // THE UPDATE FUNCTION
-    controller_interface::return_type TerrenceController::update(const rclcpp::Time & time, const rclcpp::Duration & period)
+    controller_interface::return_type TootlesController::update(const rclcpp::Time & time, const rclcpp::Duration & period)
     {
         // If fault latched, enforce safe outputs
         if (fault_latched_ || mode_ == Mode::FAULT)
@@ -588,7 +588,7 @@ namespace terrence_controller
         return controller_interface::return_type::OK;
     }
 
-} // namespace terrence_controller
+} // namespace tootles_controller
 
-PLUGINLIB_EXPORT_CLASS(terrence_controller::TerrenceController,
+PLUGINLIB_EXPORT_CLASS(tootles_controller::TootlesController,
                        controller_interface::ControllerInterface)

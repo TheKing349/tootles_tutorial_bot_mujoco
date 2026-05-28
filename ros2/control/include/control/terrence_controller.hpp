@@ -1,5 +1,5 @@
-#ifndef TERRENCE_CONTROLLER_HPP
-#define TERRENCE_CONTROLLER_HPP
+#ifndef TOOTLES_CONTROLLER_HPP
+#define TOOTLES_CONTROLLER_HPP
 
 #include <controller_interface/controller_interface.hpp>
 #include <geometry_msgs/msg/twist.hpp>
@@ -19,12 +19,12 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace terrence_controller
+namespace tootles_controller
 {
-    class TerrenceController : public controller_interface::ControllerInterface
+    class TootlesController : public controller_interface::ControllerInterface
     {
         public:
-            TerrenceController() = default;
+            TootlesController() = default;
 
             controller_interface::CallbackReturn on_init() override;
 
@@ -160,6 +160,6 @@ namespace terrence_controller
             double y_{0.0};
             double yaw_{0.0};
     };
-} // namespace terrence_controller
+} // namespace tootles_controller
 
-#endif // TERRENCE_CONTROLLER_HPP
+#endif // TOOTLES_CONTROLLER_HPP

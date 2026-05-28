@@ -1,8 +1,8 @@
-<library path="terrence_hwc">
+<library path="tootles_hwc">
   <class
-    name="terrence_hwc/TerrenceHWC"
-    type="terrence_hwc::TerrenceHWC"
+    name="tootles_hwc/TootlesHWC"
+    type="tootles_hwc::TootlesHWC"
     base_class_type="hardware_interface::SystemInterface">
-    <description>Hardware plugin for terrence</description>
+    <description>Hardware plugin for tootles</description>
   </class>
 </library>

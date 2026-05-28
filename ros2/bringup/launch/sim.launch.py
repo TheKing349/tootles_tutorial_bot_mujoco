@@ -46,7 +46,7 @@ def generate_launch_description():
             "xacro",
             " ",
             PathSubstitution(FindPackageShare("description")),
-            "/urdf/terrence.urdf.xacro",
+            "/urdf/tootles.urdf.xacro",
             " ",
             "sim_mode:=true",
         ]
@@ -79,7 +79,7 @@ def generate_launch_description():
         executable="create",
         arguments=[
             "-topic", "robot_description",
-            "-name", "terrence",
+            "-name", "tootles",
             # "-x", "2.0",
             # "-y", "2.0",
             "-z", "0.5",
@@ -114,17 +114,17 @@ def generate_launch_description():
         arguments=["joint_state_broadcaster"],
     )
 
-    terrence_controller_spawner = Node(
+    tootles_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["terrence_controller"],
+        arguments=["tootles_controller"],
     )
 
     # Delay controller spawners until after the robot is spawned
-    delay_terrence_controller_spawner = RegisterEventHandler(
+    delay_tootles_controller_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=spawn_entity,
-            on_exit=[terrence_controller_spawner],
+            on_exit=[tootles_controller_spawner],
         )
     )
 
@@ -191,7 +191,7 @@ def generate_launch_description():
         joy_node,
         teleop_node,
         delay_joint_state_broadcaster_spawner,
-        delay_terrence_controller_spawner,
+        delay_tootles_controller_spawner,
         foxglove,
         ekf_node,
         slam_toolbox,

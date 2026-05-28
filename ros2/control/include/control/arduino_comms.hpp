@@ -1,5 +1,5 @@
-#ifndef TERRENCE_ARDUINO_COMMS_HPP
-#define TERRENCE_ARDUINO_COMMS_HPP
+#ifndef TOOTLES_ARDUINO_COMMS_HPP
+#define TOOTLES_ARDUINO_COMMS_HPP
 
 // #include <cstring>
 #include <sstream>
@@ -118,4 +118,4 @@ private:
     int timeout_ms_;
 };
 
-#endif // TERRENCE_ARDUINO_COMMS_HPP
+#endif // TOOTLES_ARDUINO_COMMS_HPP

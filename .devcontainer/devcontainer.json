@@ -1,7 +1,7 @@
 {
-  "name": "Terrence 3.0",
+  "name": "Tootles",
   "dockerComposeFile": ["../docker/Docker-Compose.yaml"],
-  "service": "terrence_3.0",
-  "workspaceFolder": "/workspaces/terrence_3.0",
+  "service": "tootles",
+  "workspaceFolder": "/workspaces/tootles",
   "shutdownAction": "stopCompose"
 }

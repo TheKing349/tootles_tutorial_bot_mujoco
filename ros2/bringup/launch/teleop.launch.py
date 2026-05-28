@@ -58,7 +58,7 @@ def generate_launch_description():
                                 " ",
                                 PathSubstitution(FindPackageShare("description"))
                                 / "urdf"
-                                / "terrence.urdf.xacro",
+                                / "tootles.urdf.xacro",
                             ]
                         )
                     }
@@ -87,7 +87,7 @@ def generate_launch_description():
             Node(
                 package="controller_manager",
                 executable="spawner",
-                arguments=["terrence_controller", "--activate"],
+                arguments=["tootles_controller", "--activate"],
             ),
         ]
     )

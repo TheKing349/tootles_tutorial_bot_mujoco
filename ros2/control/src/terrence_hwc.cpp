@@ -1,4 +1,4 @@
-#include "control/terrence_hwc.hpp"
+#include "control/tootles_hwc.hpp"
 
 #include <chrono>
 #include <cmath>
@@ -9,9 +9,9 @@
 #include "hardware_interface/types/hardware_interface_type_values.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-namespace terrence_hwc {
+namespace tootles_hwc {
 
-    hardware_interface::CallbackReturn TerrenceHWC::on_init(
+    hardware_interface::CallbackReturn TootlesHWC::on_init(
         const hardware_interface::HardwareComponentInterfaceParams & params)
     {
         if (
@@ -33,7 +33,7 @@ namespace terrence_hwc {
             config_.max_radps = std::stod(info_.hardware_parameters.at("max_radps"));
         } else {
             config_.max_radps = 10.0;
-            RCLCPP_WARN(rclcpp::get_logger("TerrenceHWC"), "max_radps not specified in URDF, defaulting to 10.0");
+            RCLCPP_WARN(rclcpp::get_logger("TootlesHWC"), "max_radps not specified in URDF, defaulting to 10.0");
         }
 
         if (info_.hardware_parameters.count("pid_p") > 0)
@@ -45,7 +45,7 @@ namespace terrence_hwc {
         }
         else
         {
-            RCLCPP_INFO(rclcpp::get_logger("TerrenceHWC"), "PID values not supplied, using defaults.");
+            RCLCPP_INFO(rclcpp::get_logger("TootlesHWC"), "PID values not supplied, using defaults.");
         }
 
         // Debugging? I dont know her :)
@@ -85,37 +85,37 @@ namespace terrence_hwc {
         return hardware_interface::CallbackReturn::SUCCESS;
     }
 
-    hardware_interface::CallbackReturn TerrenceHWC::on_configure(
+    hardware_interface::CallbackReturn TootlesHWC::on_configure(
         const rclcpp_lifecycle::State & /*previous_state*/)
     {
-        RCLCPP_INFO(rclcpp::get_logger("TerrenceHWC"), "Configuring ... please wait ...");
+        RCLCPP_INFO(rclcpp::get_logger("TootlesHWC"), "Configuring ... please wait ...");
         if (comms_.connected())
         {
             comms_.disconnect();
         }
         comms_.connect(config_.device, config_.baud_rate, config_.timeout_ms);
-        RCLCPP_INFO(rclcpp::get_logger("TerrenceHWC"), "Successfully configured!");
+        RCLCPP_INFO(rclcpp::get_logger("TootlesHWC"), "Successfully configured!");
 
         return hardware_interface::CallbackReturn::SUCCESS;
     }
 
-    hardware_interface::CallbackReturn TerrenceHWC::on_cleanup(
+    hardware_interface::CallbackReturn TootlesHWC::on_cleanup(
         const rclcpp_lifecycle::State & /*previous_state*/)
     {
-        RCLCPP_INFO(rclcpp::get_logger("TerrenceHWC"), "Cleaning up ... please wait ...");
+        RCLCPP_INFO(rclcpp::get_logger("TootlesHWC"), "Cleaning up ... please wait ...");
         if (comms_.connected())
         {
             comms_.disconnect();
         }
-        RCLCPP_INFO(rclcpp::get_logger("TerrenceHWC"), "Successfully cleaned up!");
+        RCLCPP_INFO(rclcpp::get_logger("TootlesHWC"), "Successfully cleaned up!");
 
         return hardware_interface::CallbackReturn::SUCCESS;
     }
 
-    hardware_interface::CallbackReturn TerrenceHWC::on_activate(
+    hardware_interface::CallbackReturn TootlesHWC::on_activate(
         const rclcpp_lifecycle::State & /*previous_state*/)
     {
-        RCLCPP_INFO(rclcpp::get_logger("TerrenceHWC"), "Activating ... please wait ...");
+        RCLCPP_INFO(rclcpp::get_logger("TootlesHWC"), "Activating ... please wait ...");
         if (!comms_.connected())
         {
             return hardware_interface::CallbackReturn::ERROR;
@@ -135,21 +135,21 @@ namespace terrence_hwc {
         set_state(loader_pos_if_, loader_pos_);
         set_state(hopper_pos_if_, hopper_pos_);
 
-        RCLCPP_INFO(rclcpp::get_logger("TerrenceHWC"), "Successfully activated!");
+        RCLCPP_INFO(rclcpp::get_logger("TootlesHWC"), "Successfully activated!");
 
         return hardware_interface::CallbackReturn::SUCCESS;
     }
 
-    hardware_interface::CallbackReturn TerrenceHWC::on_deactivate(
+    hardware_interface::CallbackReturn TootlesHWC::on_deactivate(
         const rclcpp_lifecycle::State & /*previous_state*/)
     {
-        RCLCPP_INFO(rclcpp::get_logger("TerrenceHWC"), "Deactivating ... please wait ...");
-        RCLCPP_INFO(rclcpp::get_logger("TerrenceHWC"), "Successfully deactivated!");
+        RCLCPP_INFO(rclcpp::get_logger("TootlesHWC"), "Deactivating ... please wait ...");
+        RCLCPP_INFO(rclcpp::get_logger("TootlesHWC"), "Successfully deactivated!");
 
         return hardware_interface::CallbackReturn::SUCCESS;
     }
 
-    hardware_interface::return_type TerrenceHWC::read(
+    hardware_interface::return_type TootlesHWC::read(
         const rclcpp::Time & /*time*/, const rclcpp::Duration & period)
     {
         if (!comms_.connected())
@@ -194,7 +194,7 @@ namespace terrence_hwc {
         return hardware_interface::return_type::OK;
     }
 
-    hardware_interface::return_type TerrenceHWC::write(
+    hardware_interface::return_type TootlesHWC::write(
         const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
     {
         if (!comms_.connected())
@@ -232,10 +232,10 @@ namespace terrence_hwc {
         return hardware_interface::return_type::OK;
     }
 
-} // namespace terrence_hwc
+} // namespace tootles_hwc
 
 #include "pluginlib/class_list_macros.hpp"
 PLUGINLIB_EXPORT_CLASS(
-    terrence_hwc::TerrenceHWC,
+    tootles_hwc::TootlesHWC,
     hardware_interface::SystemInterface
 )

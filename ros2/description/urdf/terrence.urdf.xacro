@@ -140,7 +140,7 @@
       <kd value="1.0" /> -->
   </gazebo>
 
-  <!-- Invisible driver wheel that allows Terrence to turn accurately -->
+  <!-- Invisible driver wheel that allows Tootles to turn accurately -->
   <link name="DriverSprocket">
     <inertial>
       <origin xyz="0.0097746 -3.5292E-09 -5.2457E-08" rpy="0 0 0" />
