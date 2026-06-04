@@ -5,6 +5,8 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
 
+from launch.actions import ExecuteProcess
+
 
 def generate_launch_description():
 
@@ -45,6 +47,11 @@ def generate_launch_description():
                 executable="foxglove_bridge",
                 name="foxglove_bridge",
                 parameters=[{"port": 8765}],
+            ),
+            # Foxglove Studio
+            ExecuteProcess(
+                cmd=["foxglove-studio"],
+                output="screen",
             ),
         ]
     )
