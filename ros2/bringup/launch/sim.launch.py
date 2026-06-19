@@ -80,6 +80,18 @@ def generate_launch_description():
         executable="foxglove_bridge",
         name="foxglove_bridge",
     )
+    
+    depth_to_pointcloud = Node(
+        package='depth_image_proc',
+        executable='point_cloud_xyz_node',
+        name='depth_to_pointcloud',
+        remappings=[
+            ('image_rect', 'camera/depth_image'),
+            ('camera_info', 'camera/camera_info'),
+            ('points', 'camera/points_corrected'),
+        ],
+        parameters=[{'use_sim_time': True}],
+    )
 
     return LaunchDescription(
         [
@@ -88,5 +100,6 @@ def generate_launch_description():
             gz_bridge,
             spawn_entity,
             foxglove_bridge,
+            depth_to_pointcloud,
         ]
     )
