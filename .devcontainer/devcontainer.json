@@ -1,7 +1,0 @@
-{
-  "name": "Tootles",
-  "dockerComposeFile": ["../docker/Docker-Compose.yaml"],
-  "service": "tootles",
-  "workspaceFolder": "/workspaces/tootles",
-  "shutdownAction": "stopCompose"
-}
