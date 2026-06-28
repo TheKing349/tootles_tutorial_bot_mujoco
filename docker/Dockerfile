@@ -78,8 +78,9 @@ RUN --mount=type=cache,target=/var/cache/apt \
     ros-${ROS_DISTRO}-realsense2-description \
     ros-${ROS_DISTRO}-image-transport \
     ros-${ROS_DISTRO}-image-transport-plugins \
-    ros-${ROS_DISTRO}-vision-msgs
+    ros-${ROS_DISTRO}-vision-msgs \
     # Simulation
+    ros-${ROS_DISTRO}-ros-gz
 
 #################### CTRE PHOENIX ####################
 RUN curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg" && \
