@@ -25,6 +25,29 @@
     </xacro:inertial_cylinder>
   </link>
 
+  <gazebo reference="laser_frame">
+    <sensor name="laser" type="gpu_lidar">
+      <pose> 0 0 0 0 0 0 </pose>
+      <visualize>false</visualize>
+      <update_rate>10</update_rate>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.3</min>
+          <max>12</max>
+        </range>
+      </lidar>
+      <topic>scan</topic>
+      <gz_frame_id>laser_frame</gz_frame_id>
+    </sensor>
+  </gazebo>
+
   <!-- RGBD Camera -->
   <joint name="camera_joint" type="fixed">
     <parent link="chassis_link" />
