@@ -79,6 +79,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     ros-${ROS_DISTRO}-image-transport \
     ros-${ROS_DISTRO}-image-transport-plugins \
     ros-${ROS_DISTRO}-vision-msgs \
+    ros-${ROS_DISTRO}-depth-image-proc \
     # Simulation
     ros-${ROS_DISTRO}-ros-gz
 
