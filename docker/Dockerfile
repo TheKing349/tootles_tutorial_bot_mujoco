@@ -82,7 +82,8 @@ RUN --mount=type=cache,target=/var/cache/apt \
     ros-${ROS_DISTRO}-vision-msgs \
     ros-${ROS_DISTRO}-depth-image-proc \
     # Simulation
-    ros-${ROS_DISTRO}-ros-gz
+    ros-${ROS_DISTRO}-ros-gz \
+    ros-${ROS_DISTRO}-gz-ros2-control
 
 #################### CTRE PHOENIX ####################
 RUN curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg" && \
