@@ -93,6 +93,22 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}],
     )
 
+    diff_drive_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "diff_cont",
+            '--controller-ros-args',
+            '-r /diff_cont/cmd_vel:=/cmd_vel'
+        ],
+    )
+
+    joint_broad_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_broad"],
+    )
+
     return LaunchDescription(
         [
             gazebo,
@@ -101,5 +117,7 @@ def generate_launch_description():
             spawn_entity,
             foxglove_bridge,
             depth_to_pointcloud,
+            diff_drive_spawner,
+            joint_broad_spawner
         ]
     )
