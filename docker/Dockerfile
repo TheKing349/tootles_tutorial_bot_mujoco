@@ -83,18 +83,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     ros-${ROS_DISTRO}-depth-image-proc \
     # Simulation
     ros-${ROS_DISTRO}-ros-gz \
-    ros-${ROS_DISTRO}-gz-ros2-control \
-    ros-${ROS_DISTRO}-mujoco-ros2-control \
-    # Remove this one later
-    ros-${ROS_DISTRO}-mujoco-ros2-control-demos
-
-#################### MuJoCo ####################
-ENV VIRTUAL_ENV=/opt/venv
-ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
-
-RUN python3 -m venv "${VIRTUAL_ENV}" && \
-    "${VIRTUAL_ENV}/bin/python" -m pip install --upgrade pip && \
-    "${VIRTUAL_ENV}/bin/python" -m pip install --no-cache-dir mujoco
+    ros-${ROS_DISTRO}-gz-ros2-control
 
 #################### CTRE PHOENIX ####################
 RUN curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg" && \
