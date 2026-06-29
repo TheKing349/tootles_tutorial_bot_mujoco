@@ -109,6 +109,24 @@ def generate_launch_description():
         arguments=["joint_broad"],
     )
 
+
+    joy_node = Node(
+        package='joy',
+        executable='joy_node',
+        parameters=[{'use_sim_time': True}],
+    )
+
+    teleop_node = Node(
+        package='teleop_twist_joy', 
+        executable='teleop_node',
+        name = 'teleop_node',
+        parameters=[
+            PathSubstitution(FindPackageShare("bringup"))
+            / "config"
+            / "joystick.yaml"
+        ]
+    )
+
     return LaunchDescription(
         [
             gazebo,
@@ -118,6 +136,8 @@ def generate_launch_description():
             foxglove_bridge,
             depth_to_pointcloud,
             diff_drive_spawner,
-            joint_broad_spawner
+            joint_broad_spawner,
+            joy_node,
+            teleop_node
         ]
     )

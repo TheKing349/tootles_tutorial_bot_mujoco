@@ -8,6 +8,7 @@
   <xacro:include filename="sensors.xacro"/>
   <xacro:include filename="gazebo.xacro"/>
   
+  <!-- <xacro:include filename="gazebo_control.xacro"/> -->
   <xacro:include filename="ros2_control.xacro"/>
 
   <link name="base_link"></link>
