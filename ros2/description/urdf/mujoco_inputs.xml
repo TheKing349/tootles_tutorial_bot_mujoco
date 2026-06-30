@@ -37,9 +37,9 @@
       <joint joint1="gripper_left_finger_joint" joint2="gripper_right_finger_joint" polycoef="0 -1 0 0 0" solimp="0.95 0.99 0.001" solref="0.005 1"/>
     </equality> -->
 
-    <sensor>
+    <!-- <sensor>
       <rangefinder name="lidar" site="rf" />
-    </sensor>
+    </sensor> -->
   </raw_inputs>
 
   <!-- Specific inputs that require processing from the conversion script-->
@@ -56,7 +56,7 @@
     <!-- frame. This tag will create rangefinders in the MJCF between min_angle and max_angle at each -->
     <!-- angle_increment rotated about the replicate frame's Y axis. The hardware intercface then combines -->
     <!-- them into a single LaserScan message. -->
-    <lidar ref_site="lidar_link" sensor_name="rf" min_angle="-0.3" max_angle="0.3" angle_increment="0.025" />
+    <!-- <lidar ref_site="lidar_link" sensor_name="rf" min_angle="-0.3" max_angle="0.3" angle_increment="0.025" /> -->
 
     <!-- The element with the type and name as listed below will be modified with the remaining attributes -->
     <!-- If the attribute already existed, it will be overwritten -->

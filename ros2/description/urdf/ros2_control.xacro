@@ -51,7 +51,7 @@
   <ros2_control name="MujocoSystem" type="system">
     <hardware>
       <plugin>mujoco_ros2_control/MujocoSystemInterface</plugin>
-      <param name="mujoco_model">$(find description)/worlds/mujoco_scene.xml</param>
+      <param name="mujoco_model_topic">/mujoco_robot_description</param>
       <!-- Publish camera images at 6 hz -->
       <param name="camera_publish_rate">6.0</param>
 
