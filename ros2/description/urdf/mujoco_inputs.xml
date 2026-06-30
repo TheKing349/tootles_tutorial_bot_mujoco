@@ -20,26 +20,9 @@
       <velocity name="back_left_wheel_joint" joint="back_left_wheel_joint"/>
       <velocity name="back_right_wheel_joint" joint="back_right_wheel_joint"/>
     </actuator>
-    <!-- <actuator>
-      <position name="joint1" joint="joint1" kp="25000" dampratio="1.0" ctrlrange="-3.14159 3.14159" />
-      <position name="joint2" joint="joint2" kp="25000" dampratio="1.0" ctrlrange="-3.14159 3.14159" />
-      <position tendon="split" name="gripper_left_finger_joint" kp="1000" dampratio="3.0" ctrlrange="-0.09 0.005" />
-    </actuator>
-
-    <tendon>
-      <fixed name="split">
-        <joint joint="gripper_left_finger_joint" coef="0.5"/>
-        <joint joint="gripper_right_finger_joint" coef="-0.5"/>
-      </fixed>
-    </tendon>
-
-    <equality>
-      <joint joint1="gripper_left_finger_joint" joint2="gripper_right_finger_joint" polycoef="0 -1 0 0 0" solimp="0.95 0.99 0.001" solref="0.005 1"/>
-    </equality> -->
-
-    <!-- <sensor>
+    <sensor>
       <rangefinder name="lidar" site="rf" />
-    </sensor> -->
+    </sensor>
   </raw_inputs>
 
   <!-- Specific inputs that require processing from the conversion script-->
@@ -56,7 +39,7 @@
     <!-- frame. This tag will create rangefinders in the MJCF between min_angle and max_angle at each -->
     <!-- angle_increment rotated about the replicate frame's Y axis. The hardware intercface then combines -->
     <!-- them into a single LaserScan message. -->
-    <!-- <lidar ref_site="lidar_link" sensor_name="rf" min_angle="-0.3" max_angle="0.3" angle_increment="0.025" /> -->
+    <lidar ref_site="lidar_link" sensor_name="rf" min_angle="-0.3" max_angle="0.3" angle_increment="0.025" />
 
     <!-- The element with the type and name as listed below will be modified with the remaining attributes -->
     <!-- If the attribute already existed, it will be overwritten -->
