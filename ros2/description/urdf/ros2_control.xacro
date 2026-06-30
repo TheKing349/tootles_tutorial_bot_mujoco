@@ -97,8 +97,8 @@
       <!-- Parameters will be used as is -->
       <param name="frame_name">camera_color_mujoco_frame</param>
       <param name="info_topic">/camera/camera_info</param>
-      <param name="image_topic">/camera/image_raw</param>
-      <param name="depth_topic">/camera/depth/image_raw</param>
+      <param name="image_topic">/camera/image</param>
+      <param name="depth_topic">/camera/depth_image</param>
     </sensor>
 
     <!-- Lidar sensors are matched to a set of rangefinder sensors in the MJCF, which should be -->
