@@ -113,12 +113,12 @@ def generate_launch_description():
         [
             rsp,
             # foxglove_bridge,
-            # depth_to_pointcloud,
+            depth_to_pointcloud,
             mujoco_robot_description,
             control_node,
             diff_drive_spawner,
             joint_broad_spawner,
-            # joy_node,
-            # teleop_node,
+            joy_node,
+            teleop_node,
         ]
     )
