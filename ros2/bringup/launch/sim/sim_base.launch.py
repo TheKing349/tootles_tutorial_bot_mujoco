@@ -1,29 +1,18 @@
 import os
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, PathSubstitution
+from launch.substitutions import Command, PathSubstitution, PathJoinSubstitution, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue, ParameterFile
 
 
 def generate_launch_description():
-
-    # Locate the config file
-    # Ensure 'bringup' matches your actual package name where the yaml is stored
-    bridge_params = os.path.join(
-        FindPackageShare("bringup").find("bringup"), "config", "gz_bridge.yaml"
-    )
-
-    # Start environment
-    gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [
-                PathSubstitution(FindPackageShare("ros_gz_sim")),
-                "/launch/gz_sim.launch.py",
-            ]
-        ),
-        launch_arguments={"gz_args": "-r ros2/description/worlds/world.sdf"}.items(),
+    use_gazebo_arg = DeclareLaunchArgument(
+        'use_gazebo',
+        default_value='false',
+        description='Use Gazebo sim if true. Otherwise default to MuJoCo'
     )
 
     # Robot State Publisher
@@ -34,10 +23,10 @@ def generate_launch_description():
             PathSubstitution(FindPackageShare("description")),
             "/urdf/tootles.urdf.xacro",
             " ",
-            "sim_mode:=true",
+            "use_gazebo:=",
+            LaunchConfiguration('use_gazebo')
         ]
     )
-
     rsp = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
@@ -46,34 +35,7 @@ def generate_launch_description():
             {"robot_description": robot_description_content, "use_sim_time": True}
         ],
     )
-
-    # Bridge ROS & Gazebo
-    gz_bridge = Node(
-        package="ros_gz_bridge",
-        executable="parameter_bridge",
-        name="gazebo",
-        parameters=[
-            {"config_file": bridge_params},
-            {"publish_rate": 400.0},
-            {"qos_overrides./tf_static.publisher.durability": "transient_local"},
-        ],
-        output="screen",
-    )
-
-    # Spawn Robot
-    spawn_entity = Node(
-        package="ros_gz_sim",
-        executable="create",
-        arguments=[
-            "-topic",
-            "robot_description",
-            "-name",
-            "tootles",
-            "-z",
-            "0.5",
-        ],
-        output="screen",
-    )
+    controllers_config = [PathSubstitution(FindPackageShare("bringup")), "/config/controllers.yaml"]
 
     foxglove_bridge = Node(
         package="foxglove_bridge",
@@ -99,16 +61,16 @@ def generate_launch_description():
         arguments=[
             "diff_cont",
             '--controller-ros-args',
-            '-r /diff_cont/cmd_vel:=/cmd_vel'
+            '-r /diff_cont/cmd_vel:=/cmd_vel',
+             "--param-file", controllers_config
         ],
     )
 
     joint_broad_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_broad"],
+        arguments=["joint_broad", "--param-file", controllers_config],
     )
-
 
     joy_node = Node(
         package='joy',
@@ -129,15 +91,13 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-            gazebo,
+            use_gazebo_arg,
             rsp,
-            gz_bridge,
-            spawn_entity,
             foxglove_bridge,
             depth_to_pointcloud,
             diff_drive_spawner,
             joint_broad_spawner,
             joy_node,
-            teleop_node
+            teleop_node,
         ]
     )
