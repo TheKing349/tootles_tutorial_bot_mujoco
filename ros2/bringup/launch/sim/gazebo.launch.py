@@ -10,16 +10,9 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            PathJoinSubstitution([
-                FindPackageShare("bringup"),
-                "launch",
-                "sim",
-                "base.launch.py",
-            ])
+            PathJoinSubstitution([FindPackageShare("bringup"), "launch", "sim", "base.launch.py"])
         ),
-        launch_arguments={
-            "use_gazebo": "true",
-        }.items(),
+        launch_arguments={"use_gazebo": "true"}.items(),
     )
 
     # Locate the config file

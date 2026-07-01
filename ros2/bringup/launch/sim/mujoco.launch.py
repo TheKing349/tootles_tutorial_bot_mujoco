@@ -11,16 +11,9 @@ from launch_ros.parameter_descriptions import ParameterFile
 def generate_launch_description():
     base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            PathJoinSubstitution([
-                FindPackageShare("bringup"),
-                "launch",
-                "sim",
-                "base.launch.py",
-            ])
+            PathJoinSubstitution([FindPackageShare("bringup"), "launch", "sim", "base.launch.py"])
         ),
-        launch_arguments={
-            "use_gazebo": "false",
-        }.items(),
+        launch_arguments={"use_gazebo": "false"}.items()
     )
 
     mujoco_robot_description = Node(
