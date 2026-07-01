@@ -1,5 +1,7 @@
-teleop_twist_joy_node:
+teleop_node:
   ros__parameters:
+    publish_stamped_twist: true
+
     axis_linear:
       x: 1  # Left stick vertical
     axis_angular:

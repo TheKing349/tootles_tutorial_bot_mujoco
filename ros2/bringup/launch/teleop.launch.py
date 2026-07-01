@@ -27,9 +27,9 @@ def generate_launch_description():
             Node(
                 package='teleop_twist_joy',
                 executable='teleop_node',
-                name='teleop_twist_joy_node',
+                name='teleop_node',
                 parameters=[
-                    PathSubstitution(FindPackageShare("control"))
+                    PathSubstitution(FindPackageShare("bringup"))
                     / "config"
                     / "joystick.yaml"
                 ]
@@ -39,7 +39,7 @@ def generate_launch_description():
                 package="controller_manager",
                 executable="ros2_control_node",
                 parameters=[
-                    PathSubstitution(FindPackageShare("control"))
+                    PathSubstitution(FindPackageShare("bringup"))
                     / "config"
                     / "controllers.yaml"
                 ],
