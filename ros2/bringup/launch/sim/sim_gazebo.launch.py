@@ -2,7 +2,7 @@ import os
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, PathSubstitution, PathJoinSubstitution
+from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
@@ -30,12 +30,9 @@ def generate_launch_description():
 
     # Start environment
     gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [
-                PathSubstitution(FindPackageShare("ros_gz_sim")),
-                "/launch/gz_sim.launch.py",
-            ]
-        ),
+        PythonLaunchDescriptionSource(PathJoinSubstitution(
+          [FindPackageShare("ros_gz_sim"), "launch", "gz_sim.launch.py"]
+        )),
         launch_arguments={"gz_args": "-r ros2/description/worlds/world.sdf"}.items(),
     )
 

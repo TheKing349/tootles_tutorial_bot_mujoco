@@ -2,10 +2,10 @@ import os
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, PathSubstitution, PathJoinSubstitution
+from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from launch_ros.parameter_descriptions import ParameterValue, ParameterFile
+from launch_ros.parameter_descriptions import ParameterFile
 
 
 def generate_launch_description():
@@ -31,7 +31,7 @@ def generate_launch_description():
         arguments=[
             "--add_free_joint",
             "--scene",
-            [PathSubstitution(FindPackageShare("description")), "/worlds/mujoco_scene.xml"],
+            PathJoinSubstitution([FindPackageShare("description"), "worlds", "mujoco_scene.xml"]),
             "--publish_topic",
             "/mujoco_robot_description",
         ],
@@ -43,7 +43,7 @@ def generate_launch_description():
         output="both",
         parameters=[
             {"use_sim_time": True},
-            ParameterFile([PathSubstitution(FindPackageShare("bringup")), "/config/controllers.yaml"]),
+            ParameterFile(PathJoinSubstitution([FindPackageShare("bringup"), "config", "controllers.yaml"])),
         ],
     )
 

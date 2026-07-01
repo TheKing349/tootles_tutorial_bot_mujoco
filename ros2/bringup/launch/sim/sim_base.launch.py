@@ -5,7 +5,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, PathSubstitution, PathJoinSubstitution, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from launch_ros.parameter_descriptions import ParameterValue, ParameterFile
+from launch_ros.parameter_descriptions import ParameterFile
 
 
 def generate_launch_description():
@@ -35,7 +35,7 @@ def generate_launch_description():
             {"robot_description": robot_description_content, "use_sim_time": True}
         ],
     )
-    controllers_config = [PathSubstitution(FindPackageShare("bringup")), "/config/controllers.yaml"]
+    controllers_config = PathJoinSubstitution([FindPackageShare("bringup"), "config", "controllers.yaml"])
 
     foxglove_bridge = Node(
         package="foxglove_bridge",
