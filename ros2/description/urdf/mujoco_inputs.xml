@@ -14,11 +14,11 @@
     </default>
 
     <actuator>
-      <velocity name="front_left_wheel_joint" joint="front_left_wheel_joint"/>
-      <velocity name="front_right_wheel_joint" joint="front_right_wheel_joint"/>
+      <velocity name="front_left_wheel_joint" joint="front_left_wheel_joint" kv="20" forcerange="-50 50"/>
+      <velocity name="front_right_wheel_joint" joint="front_right_wheel_joint" kv="20" forcerange="-50 50"/>
 
-      <velocity name="back_left_wheel_joint" joint="back_left_wheel_joint"/>
-      <velocity name="back_right_wheel_joint" joint="back_right_wheel_joint"/>
+      <velocity name="back_left_wheel_joint" joint="back_left_wheel_joint" kv="20" forcerange="-50 50"/>
+      <velocity name="back_right_wheel_joint" joint="back_right_wheel_joint" kv="20" forcerange="-50 50"/>
     </actuator>
     <sensor>
       <rangefinder name="lidar" site="rf" />
@@ -44,8 +44,9 @@
     <!-- The element with the type and name as listed below will be modified with the remaining attributes -->
     <!-- If the attribute already existed, it will be overwritten -->
     <!-- Note that the type and name elements are required -->
-    <!-- <modify_element type="joint" name="joint1" frictionloss="1.0" damping="2.0"/>
-    <modify_element type="body" name="forearm" gravcomp="1.0"/> -->
-
+    <modify_element type="joint" name="front_left_wheel_joint" damping="0.1" armature="0.1"/>
+    <modify_element type="joint" name="front_right_wheel_joint" damping="0.1" armature="0.1"/>
+    <modify_element type="joint" name="back_left_wheel_joint" damping="0.1" armature="0.1"/>
+    <modify_element type="joint" name="back_right_wheel_joint" damping="0.1" armature="0.1"/>
   </processed_inputs>
 </mujoco_inputs>
