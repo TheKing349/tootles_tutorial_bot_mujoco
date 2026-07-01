@@ -1,0 +1,74 @@
+import os
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
+
+
+def generate_launch_description():
+    sim_base = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([
+                FindPackageShare("bringup"),
+                "launch",
+                "sim",
+                "sim_base.launch.py",
+            ])
+        ),
+        launch_arguments={
+            "use_gazebo": "true",
+        }.items(),
+    )
+
+    # Locate the config file
+    # Ensure 'bringup' matches your actual package name where the yaml is stored
+    bridge_params = os.path.join(
+        FindPackageShare("bringup").find("bringup"), "config", "gz_bridge.yaml"
+    )
+
+    # Start environment
+    gazebo = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(PathJoinSubstitution(
+          [FindPackageShare("ros_gz_sim"), "launch", "gz_sim.launch.py"]
+        )),
+        launch_arguments={"gz_args": "-r ros2/description/worlds/world.sdf"}.items(),
+    )
+
+    # Bridge ROS & Gazebo
+    gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        name="gazebo",
+        parameters=[
+            {"config_file": bridge_params},
+            {"publish_rate": 400.0},
+            {"qos_overrides./tf_static.publisher.durability": "transient_local"},
+        ],
+        output="screen",
+    )
+
+    # Spawn Robot
+    spawn_entity = Node(
+        package="ros_gz_sim",
+        executable="create",
+        arguments=[
+            "-topic",
+            "robot_description",
+            "-name",
+            "tootles",
+            "-z",
+            "0.5",
+        ],
+        output="screen",
+    )
+
+    return LaunchDescription(
+        [
+            sim_base,
+            gazebo,
+            gz_bridge,
+            spawn_entity,
+        ]
+    )

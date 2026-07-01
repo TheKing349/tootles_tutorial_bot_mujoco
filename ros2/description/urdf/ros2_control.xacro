@@ -1,48 +1,122 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <ros2_control name="GazeboSystem" type="system">
-    <hardware>
-      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
-    </hardware>
+  <!-- Gazebo -->
+  <xacro:if value="$(arg use_gazebo)">
+    <ros2_control name="GazeboSystem" type="system">
+      <hardware>
+        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+      </hardware>
 
-    <joint name="front_left_wheel_joint">
-      <command_interface name="velocity">
-        <param name="min">-10</param>
-        <param name="max">10</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-    <joint name="front_right_wheel_joint">
-      <command_interface name="velocity">
-        <param name="min">-10</param>
-        <param name="max">10</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
+      <joint name="front_left_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-10</param>
+          <param name="max">10</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="front_right_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-10</param>
+          <param name="max">10</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
 
-    <joint name="back_left_wheel_joint">
-      <command_interface name="velocity">
-        <param name="min">-10</param>
-        <param name="max">10</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-    <joint name="back_right_wheel_joint">
-      <command_interface name="velocity">
-        <param name="min">-10</param>
-        <param name="max">10</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-  </ros2_control>
+      <joint name="back_left_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-10</param>
+          <param name="max">10</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="back_right_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-10</param>
+          <param name="max">10</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+    </ros2_control>
 
-  <gazebo>
-    <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system.so">
-      <parameters>$(find bringup)/config/controllers.yaml</parameters>
-    </plugin>
-  </gazebo>
+    <gazebo>
+      <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system.so">
+        <parameters>$(find bringup)/config/controllers.yaml</parameters>
+      </plugin>
+    </gazebo>
+  </xacro:if>
+
+  <!-- MuJoCo -->
+  <xacro:unless value="$(arg use_gazebo)">
+    <ros2_control name="MujocoSystem" type="system">
+      <hardware>
+        <plugin>mujoco_ros2_control/MujocoSystemInterface</plugin>
+        <param name="mujoco_model_topic">/mujoco_robot_description</param>
+        <!-- Publish camera images at 6 hz -->
+        <param name="camera_publish_rate">6.0</param>
+
+        <!-- Publish lidar scans at 10 hz -->
+        <param name="lidar_publish_rate">1.0</param>
+      </hardware>
+      <joint name="front_left_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-10</param>
+          <param name="max">10</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="front_right_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-10</param>
+          <param name="max">10</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="back_left_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-10</param>
+          <param name="max">10</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="back_right_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-10</param>
+          <param name="max">10</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <!-- For cameras, the sensor name _must_ match the camera name in the MJCF -->
+      <sensor name="camera">
+        <!-- Parameters will be used as is -->
+        <param name="frame_name">camera_color_mujoco_frame</param>
+        <param name="info_topic">/camera/camera_info</param>
+        <param name="image_topic">/camera/image</param>
+        <param name="depth_topic">/camera/depth_image</param>
+      </sensor>
+
+      <!-- Lidar sensors are matched to a set of rangefinder sensors in the MJCF, which should be -->
+      <!-- generated with the "<lidar>" inputs in the conversion script. The consiste of N rangefinders -->
+      <!-- and will generally be of the form "<sensor_name>-01". These parameters should line up with -->
+      <!-- those documented in the laserscan message. -->
+      <sensor name="lidar">
+        <param name="frame_name">lidar_link</param>
+        <param name="angle_increment">0.025</param>
+        <param name="min_angle">-0.3</param>
+        <param name="max_angle">0.3</param>
+        <param name="range_min">0.05</param>
+        <param name="range_max">10</param>
+        <param name="laserscan_topic">/scan</param>
+      </sensor>
+    </ros2_control>
+  </xacro:unless>
 </robot>
