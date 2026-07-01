@@ -6,7 +6,6 @@ from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-
 def generate_launch_description():
     base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -17,8 +16,8 @@ def generate_launch_description():
 
     # Locate the config file
     # Ensure 'bringup' matches your actual package name where the yaml is stored
-    bridge_params = os.path.join(
-        FindPackageShare("bringup").find("bringup"), "config", "gz_bridge.yaml"
+    bridge_params = PathJoinSubstitution(
+      [FindPackageShare("bringup"), "config", "gz_bridge.yaml"]
     )
 
     # Start environment
@@ -47,12 +46,9 @@ def generate_launch_description():
         package="ros_gz_sim",
         executable="create",
         arguments=[
-            "-topic",
-            "robot_description",
-            "-name",
-            "tootles",
-            "-z",
-            "0.5",
+            "-topic", "robot_description",
+            "-name", "tootles",
+            "-z", "0.5",
         ],
         output="screen",
     )

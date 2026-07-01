@@ -7,7 +7,6 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterFile
 
-
 def generate_launch_description():
     base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -20,13 +19,10 @@ def generate_launch_description():
         package="mujoco_ros2_control",
         executable="robot_description_to_mjcf.sh",
         output="both",
-        emulate_tty=True,
         arguments=[
             "--add_free_joint",
-            "--scene",
-            PathJoinSubstitution([FindPackageShare("description"), "worlds", "mujoco_scene.xml"]),
-            "--publish_topic",
-            "/mujoco_robot_description",
+            "--scene", PathJoinSubstitution([FindPackageShare("description"), "worlds", "mujoco_scene.xml"]),
+            "--publish_topic", "/mujoco_robot_description",
         ],
     )
 

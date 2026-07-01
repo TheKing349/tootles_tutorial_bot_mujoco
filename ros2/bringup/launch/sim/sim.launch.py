@@ -6,14 +6,12 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
 from launch_ros.substitutions import FindPackageShare
 
-
 def generate_launch_description():
     use_gazebo_arg = DeclareLaunchArgument(
         'use_gazebo',
         default_value='false',
         description='Use Gazebo sim if true. Otherwise default to MuJoCo'
     )
-
     use_gazebo = LaunchConfiguration('use_gazebo')
 
     gazebo = IncludeLaunchDescription(
