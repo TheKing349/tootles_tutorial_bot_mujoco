@@ -48,6 +48,7 @@
       <!-- Note that the type and name elements are required -->
       <modify_element type="joint" name="front_left_wheel_joint" damping="0.1" armature="0.1"/>
       <modify_element type="joint" name="front_right_wheel_joint" damping="0.1" armature="0.1"/>
+      
       <modify_element type="joint" name="back_left_wheel_joint" damping="0.1" armature="0.1"/>
       <modify_element type="joint" name="back_right_wheel_joint" damping="0.1" armature="0.1"/>
     </processed_inputs>

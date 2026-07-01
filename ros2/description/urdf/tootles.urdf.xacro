@@ -15,9 +15,9 @@
   <xacro:unless value="$(arg use_gazebo)">
     <xacro:include filename="mujoco_inputs.xacro"/>
   </xacro:unless>
+  
   <!-- <xacro:include filename="gazebo_control.xacro"/> -->
   <xacro:include filename="ros2_control.xacro"/>
 
   <link name="base_link"></link>
-
 </robot>
