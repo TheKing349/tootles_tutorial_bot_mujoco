@@ -90,6 +90,7 @@ def generate_launch_description():
         arguments=[
             "--robot_description",
             robot_description_content,
+            "--add_free_joint",
             "--m",
             [PathSubstitution(FindPackageShare("description")), "/urdf/mujoco_inputs.xml"],
             "--scene",
