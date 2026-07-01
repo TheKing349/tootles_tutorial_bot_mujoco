@@ -16,25 +16,25 @@ def generate_launch_description():
 
     use_gazebo = LaunchConfiguration('use_gazebo')
 
-    sim_gazebo = IncludeLaunchDescription(
+    gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([
                 FindPackageShare("bringup"),
                 "launch",
                 "sim",
-                "sim_gazebo.launch.py",
+                "gazebo.launch.py",
             ])
         ),
         condition=IfCondition(use_gazebo),
     )
 
-    sim_mujoco = IncludeLaunchDescription(
+    mujoco = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([
                 FindPackageShare("bringup"),
                 "launch",
                 "sim",
-                "sim_mujoco.launch.py",
+                "mujoco.launch.py",
             ])
         ),
         condition=UnlessCondition(use_gazebo),
@@ -42,6 +42,6 @@ def generate_launch_description():
 
     return LaunchDescription([
         use_gazebo_arg,
-        sim_gazebo,
-        sim_mujoco,
+        gazebo,
+        mujoco,
     ])

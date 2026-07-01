@@ -8,13 +8,13 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    sim_base = IncludeLaunchDescription(
+    base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([
                 FindPackageShare("bringup"),
                 "launch",
                 "sim",
-                "sim_base.launch.py",
+                "base.launch.py",
             ])
         ),
         launch_arguments={
@@ -66,7 +66,7 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-            sim_base,
+            base,
             gazebo,
             gz_bridge,
             spawn_entity,

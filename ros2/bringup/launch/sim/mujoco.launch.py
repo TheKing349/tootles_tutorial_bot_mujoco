@@ -9,13 +9,13 @@ from launch_ros.parameter_descriptions import ParameterFile
 
 
 def generate_launch_description():
-    sim_base = IncludeLaunchDescription(
+    base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([
                 FindPackageShare("bringup"),
                 "launch",
                 "sim",
-                "sim_base.launch.py",
+                "base.launch.py",
             ])
         ),
         launch_arguments={
@@ -49,7 +49,7 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-            sim_base,
+            base,
             mujoco_robot_description,
             control_node,
         ]
