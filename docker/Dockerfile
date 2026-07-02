@@ -99,8 +99,7 @@ RUN python3 -m venv "${VIRTUAL_ENV}" && \
 
 #################### CTRE PHOENIX ####################
 RUN curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg" && \
-    curl -s --compressed -o /etc/apt/sources.list.d/ctr2026.list "https://deb.ctr-electronics.com/ctr2026.list" && \
-    sed -i 's/signed-by=/arch=amd64 signed-by=/' /etc/apt/sources.list.d/ctr2026.list
+    curl -s --compressed -o /etc/apt/sources.list.d/ctr2026.list "https://deb.ctr-electronics.com/ctr2026.list"
 
 # Cache for faster rebuilds
 RUN --mount=type=cache,target=/var/cache/apt \
