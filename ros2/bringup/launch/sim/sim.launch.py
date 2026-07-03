@@ -1,4 +1,3 @@
-import os
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.conditions import IfCondition, UnlessCondition
@@ -14,11 +13,19 @@ def generate_launch_description():
     )
     use_gazebo = LaunchConfiguration('use_gazebo')
 
+    world_arg = DeclareLaunchArgument(
+        'world',
+        default_value='world',
+        description='The scene to load in'
+    )
+    world = LaunchConfiguration('world')
+
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([FindPackageShare("bringup"), "launch", "sim", "gazebo.launch.py"])
         ),
         condition=IfCondition(use_gazebo),
+        launch_arguments={"world": world}.items(),
     )
 
     mujoco = IncludeLaunchDescription(
@@ -26,10 +33,12 @@ def generate_launch_description():
             PathJoinSubstitution([FindPackageShare("bringup"), "launch", "sim", "mujoco.launch.py"])
         ),
         condition=UnlessCondition(use_gazebo),
+        launch_arguments={"world": world}.items(),
     )
 
     return LaunchDescription([
         use_gazebo_arg,
+        world_arg,
         gazebo,
         mujoco,
     ])
