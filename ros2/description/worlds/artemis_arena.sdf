@@ -142,7 +142,7 @@
         <visual name = "arena_visual">
           <geometry>
             <mesh>
-              <uri>./meshes/ksc/artemis-arena.dae</uri>
+              <uri>./meshes/ksc/artemis-arena.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -150,7 +150,7 @@
         <collision name = "arena_collision">
           <geometry>
               <mesh>
-                <uri>./meshes/ksc/artemis-arena-collision.stl</uri>
+                <uri>./meshes/ksc/artemis-arena-collision.obj</uri>
                 <scale>1 1 1</scale>
               </mesh>
             </geometry>
@@ -159,7 +159,7 @@
         <visual name = "arena_env_visual">
           <geometry>
             <mesh>
-              <uri>./meshes/ksc/artemis-arena-env.dae</uri>
+              <uri>./meshes/ksc/artemis-arena-env.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -167,7 +167,7 @@
         <collision name = "arena_env_collision">
           <geometry>
             <mesh>
-              <uri>./meshes/ksc/artemis-arena-env.dae</uri>
+              <uri>./meshes/ksc/artemis-arena-env.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -177,7 +177,7 @@
           <pose>0 0 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>./meshes/terrain/ksc-terrain-1.dae</uri>
+              <uri>./meshes/terrain/ksc-terrain-1.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -186,7 +186,7 @@
           <pose>0 0 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>./meshes/terrain/ksc-terrain-1.stl</uri>
+              <uri>./meshes/terrain/ksc-terrain-1.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -196,7 +196,7 @@
           <pose>0 0 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-divider.dae</uri>
+              <uri>./meshes/rocks/rock-divider.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -205,7 +205,7 @@
           <pose>0 0 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-divider.dae</uri>
+              <uri>./meshes/rocks/rock-divider.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -223,7 +223,7 @@
         <visual name = "rock1_visual">
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-1.dae</uri>
+              <uri>./meshes/rocks/rock-1.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -231,7 +231,7 @@
         <collision name = "rock1_collision">
           <geometry>
               <mesh>
-                <uri>./meshes/rocks/rock-1.dae</uri>
+                <uri>./meshes/rocks/rock-1.obj</uri>
                 <scale>1 1 1</scale>
               </mesh>
             </geometry>
@@ -248,7 +248,7 @@
         <visual name = "rock2_visual">
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-2.dae</uri>
+              <uri>./meshes/rocks/rock-2.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -256,7 +256,7 @@
         <collision name = "rock2_collision">
           <geometry>
               <mesh>
-                <uri>./meshes/rocks/rock-2.dae</uri>
+                <uri>./meshes/rocks/rock-2.obj</uri>
                 <scale>1 1 1</scale>
               </mesh>
             </geometry>
@@ -273,7 +273,7 @@
         <visual name = "rock3_visual">
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-3.dae</uri>
+              <uri>./meshes/rocks/rock-3.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -281,7 +281,7 @@
         <collision name = "rock3_collision">
           <geometry>
               <mesh>
-                <uri>./meshes/rocks/rock-3.dae</uri>
+                <uri>./meshes/rocks/rock-3.obj</uri>
                 <scale>1 1 1</scale>
               </mesh>
             </geometry>

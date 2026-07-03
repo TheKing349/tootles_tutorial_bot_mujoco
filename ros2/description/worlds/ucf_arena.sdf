@@ -117,7 +117,7 @@
         <visual name = "arena_visual">
           <geometry>
             <mesh>
-              <uri>./meshes/ucf/ucf-arena.dae</uri>
+              <uri>./meshes/ucf/ucf-arena.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -130,7 +130,7 @@
         <collision name = "arena_collision">
           <geometry>
             <mesh>
-              <uri>./meshes/ucf/ucf-arena.dae</uri>
+              <uri>./meshes/ucf/ucf-arena.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -150,7 +150,7 @@
         <visual name = "terrain_visual">
           <geometry>
             <mesh>
-              <uri>./meshes/terrain/ucf-terrain-1.dae</uri>
+              <uri>./meshes/terrain/ucf-terrain-1.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -163,7 +163,7 @@
         <collision name = "terrain_collision">
           <geometry>
             <mesh>
-              <uri>./meshes/terrain/ucf-terrain-1.stl</uri>
+              <uri>./meshes/terrain/ucf-terrain-1.obj</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -192,7 +192,7 @@
         <visual name='rock1_visual'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-8.dae</uri>
+              <uri>./meshes/rocks/rock-8.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -200,7 +200,7 @@
         <collision name='rock1_collision'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-8.dae</uri>
+              <uri>./meshes/rocks/rock-8.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -218,7 +218,7 @@
         <visual name='rock2_visual'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -226,7 +226,7 @@
         <collision name='rock2_collision'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -244,7 +244,7 @@
         <visual name='rock3_visual'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -252,7 +252,7 @@
         <collision name='rock3_collision'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -270,7 +270,7 @@
         <visual name='rock4_visual'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-8.dae</uri>
+              <uri>./meshes/rocks/rock-8.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -278,7 +278,7 @@
         <collision name='rock4_collision'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-8.dae</uri>
+              <uri>./meshes/rocks/rock-8.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -296,7 +296,7 @@
         <visual name='rock5_visual'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-8.dae</uri>
+              <uri>./meshes/rocks/rock-8.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -304,7 +304,7 @@
         <collision name='rock5_collision'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-8.dae</uri>
+              <uri>./meshes/rocks/rock-8.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -322,7 +322,7 @@
         <visual name='rock6_visual'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -330,7 +330,7 @@
         <collision name='rock6_collision'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -348,7 +348,7 @@
         <visual name='rock7_visual'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -356,7 +356,7 @@
         <collision name='rock7_collision'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -374,7 +374,7 @@
         <visual name='rock8_visual'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
@@ -382,7 +382,7 @@
         <collision name='rock8_collision'>
           <geometry>
             <mesh>
-              <uri>./meshes/rocks/rock-7.dae</uri>
+              <uri>./meshes/rocks/rock-7.obj</uri>
               <scale>0.7 0.7 0.7</scale>
             </mesh>
           </geometry>
