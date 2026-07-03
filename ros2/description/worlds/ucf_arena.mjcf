@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<mujoco model="ucf-arena">
+  <compiler angle="radian" meshdir="./meshes"/>
+  <option timestep="0.001" gravity="0 0 -9.81"/>
+  <default>
+    <geom friction="1.0 0.8 0.01" condim="4"/>
+    <joint damping="0.1" frictionloss="0.01"/>
+  </default>
+  <worldbody>
+    <body name="ucf_arena" pos="0 0 0">
+      <inertial mass="100.0" pos="0 0 0" diaginertia="10.0 10.0 10.0"/>
+      <geom name="arena_collision" type="mesh" mesh="ucf-arena" friction="0.8 0.8 0.01"/>
+      <geom name="terrain_collision" type="mesh" mesh="ucf-terrain-1" friction="0.4 0.4 0.01"/>
+    </body>
+    <body name="rock1" pos="-3.38496 4.56 0" euler="0 0 0.8">
+      <inertial mass="8.0" pos="0 0 0" diaginertia="0.32 0.32 0.32"/>
+      <geom name="rock1_collision" type="mesh" mesh="rock-8" friction="0.8 0.8 0.01"/>
+    </body>
+    <body name="rock2" pos="-2.13309 5.81296 0" euler="0 -0.02 -2.2">
+      <inertial mass="5.0" pos="0 0 0" diaginertia="0.2 0.2 0.2"/>
+      <geom name="rock2_collision" type="mesh" mesh="rock-7" friction="0.8 0.8 0.01"/>
+    </body>
+    <body name="rock3" pos="-1.19102 4.57 0" euler="0 0 -2.2">
+      <inertial mass="5.0" pos="0 0 0" diaginertia="0.2 0.2 0.2"/>
+      <geom name="rock3_collision" type="mesh" mesh="rock-7" friction="0.8 0.8 0.01"/>
+    </body>
+    <body name="rock4" pos="-3.54076 1.5 0" euler="0 0 0.8">
+      <inertial mass="5.0" pos="0 0 0" diaginertia="0.2 0.2 0.2"/>
+      <geom name="rock4_collision" type="mesh" mesh="rock-8" friction="0.8 0.8 0.01"/>
+    </body>
+    <body name="rock5" pos="3.46 1.5 0" euler="0 0 0.8">
+      <inertial mass="5.0" pos="0 0 0" diaginertia="0.2 0.2 0.2"/>
+      <geom name="rock5_collision" type="mesh" mesh="rock-8" friction="0.8 0.8 0.01"/>
+    </body>
+    <body name="rock6" pos="3.7 4.9 0" euler="0 0 -2.2">
+      <inertial mass="5.0" pos="0 0 0" diaginertia="0.2 0.2 0.2"/>
+      <geom name="rock6_collision" type="mesh" mesh="rock-7" friction="0.8 0.8 0.01"/>
+    </body>
+    <body name="rock7" pos="1.61448 7 0" euler="0 0 -2.2">
+      <inertial mass="5.0" pos="0 0 0" diaginertia="0.2 0.2 0.2"/>
+      <geom name="rock7_collision" type="mesh" mesh="rock-7" friction="0.8 0.8 0.01"/>
+    </body>
+    <body name="rock8" pos="0.9 5.7155 0" euler="0 0 -2.2">
+      <inertial mass="5.0" pos="0 0 0" diaginertia="0.2 0.2 0.2"/>
+      <geom name="rock8_collision" type="mesh" mesh="rock-7" friction="0.8 0.8 0.01"/>
+    </body>
+  </worldbody>
+  <asset>
+    <mesh name="ucf-arena" file="ucf/ucf-arena.obj" scale="1 1 1"/>
+    <mesh name="ucf-terrain-1" file="terrain/ucf-terrain-1.obj" scale="1 1 1"/>
+    <mesh name="rock-8" file="rocks/rock-8.obj" scale="0.7 0.7 0.7"/>
+    <mesh name="rock-7" file="rocks/rock-7.obj" scale="0.7 0.7 0.7"/>
+  </asset>
+  <actuator/>
+</mujoco>

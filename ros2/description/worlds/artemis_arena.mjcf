@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<mujoco model="artemis_arena">
+  <compiler angle="radian" meshdir="./meshes"/>
+  <option timestep="0.001" gravity="0 0 -9.81"/>
+  <default>
+    <geom friction="1.0 0.8 0.01" condim="4"/>
+    <joint damping="0.1" frictionloss="0.01"/>
+  </default>
+  <worldbody>
+    <body name="artemis_arena" pos="0 0 0" euler="0 0 0">
+      <inertial mass="100.0" pos="0 0 0" diaginertia="10.0 10.0 10.0"/>
+      <geom name="arena_collision" type="mesh" mesh="artemis-arena-collision" friction="1.0 0.8 0.01"/>
+      <geom name="arena_env_collision" type="mesh" mesh="artemis-arena-env" friction="1.0 0.8 0.01"/>
+      <geom name="terrain_collision" type="mesh" mesh="ksc-terrain-1" friction="1.0 0.8 0.01"/>
+      <geom name="rocks_collision" type="mesh" mesh="rock-divider" friction="1.0 0.8 0.01"/>
+    </body>
+    <body name="rock1" pos="6 3.5 0.1" euler="0 0 0">
+      <inertial mass="15.0" pos="0 0 0" diaginertia="0.5 0.5 0.5"/>
+      <geom name="rock1_collision" type="mesh" mesh="rock-1" friction="1.0 0.8 0.01"/>
+    </body>
+    <body name="rock2" pos="5.5 2.5 0.1" euler="0 0 0">
+      <inertial mass="30.0" pos="0 0 0" diaginertia="1.0 1.0 1.0"/>
+      <geom name="rock2_collision" type="mesh" mesh="rock-2" friction="1.0 0.8 0.01"/>
+    </body>
+    <body name="rock3" pos="0.8 4.0 0.1" euler="0 0 0">
+      <inertial mass="25.0" pos="0 0 0" diaginertia="0.8 0.8 0.8"/>
+      <geom name="rock3_collision" type="mesh" mesh="rock-3" friction="1.0 0.8 0.01"/>
+    </body>
+  </worldbody>
+  <asset>
+    <mesh name="artemis-arena-collision" file="ksc/artemis-arena-collision.obj"/>
+    <mesh name="artemis-arena-env" file="ksc/artemis-arena-env.obj"/>
+    <mesh name="ksc-terrain-1" file="terrain/ksc-terrain-1.obj"/>
+    <mesh name="rock-divider" file="rocks/rock-divider.obj"/>
+    <mesh name="rock-1" file="rocks/rock-1.obj"/>
+    <mesh name="rock-2" file="rocks/rock-2.obj"/>
+    <mesh name="rock-3" file="rocks/rock-3.obj"/>
+  </asset>
+</mujoco>
