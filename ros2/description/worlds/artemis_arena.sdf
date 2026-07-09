@@ -156,7 +156,7 @@
             </geometry>
         </collision>
         <!-- Env room -->
-        <visual name = "arena_env_visual">
+        <!-- <visual name = "arena_env_visual">
           <geometry>
             <mesh>
               <uri>./meshes/ksc/artemis-arena-env.obj</uri>
@@ -171,7 +171,7 @@
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
-        </collision>
+        </collision> -->
         <!-- Terrain -->
         <visual name = "terrain_visual">
           <pose>0 0 0 0 0 0</pose>
