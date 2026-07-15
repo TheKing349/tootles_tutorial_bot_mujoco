@@ -89,14 +89,6 @@ RUN --mount=type=cache,target=/var/cache/apt \
     # Remove this one later
     ros-${ROS_DISTRO}-mujoco-ros2-control-demos
 
-#################### MuJoCo ####################
-ENV VIRTUAL_ENV=/opt/venv
-ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
-
-RUN python3 -m venv "${VIRTUAL_ENV}" && \
-    "${VIRTUAL_ENV}/bin/python" -m pip install --upgrade pip && \
-    "${VIRTUAL_ENV}/bin/python" -m pip install --no-cache-dir mujoco
-
 #################### CTRE PHOENIX ####################
 RUN curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg" && \
     curl -s --compressed -o /etc/apt/sources.list.d/ctr2026.list "https://deb.ctr-electronics.com/ctr2026.list" && \
