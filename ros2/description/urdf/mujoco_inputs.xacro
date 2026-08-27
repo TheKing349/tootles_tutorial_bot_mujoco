@@ -34,7 +34,7 @@
 
       <!-- The camera with the specified values will be added at the specified site name. -->
       <!-- The position and quaterinion will be filled in by the converter -->
-      <camera site="camera_link" name="camera" fovy="58" mode="fixed" resolution="640 480"/>
+      <camera site="camera_link_optical" name="camera" fovy="58" mode="fixed" resolution="640 480"/>
 
       <!-- Adds a lidar tag below a site tag to support a lidar sensor. -->
       <!-- In the URDF, we assume that that the sensor frame has the Z-axis pointed directly up in the sensor -->
