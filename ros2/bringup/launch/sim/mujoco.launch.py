@@ -41,6 +41,7 @@ def generate_launch_description():
         parameters=[
             {"use_sim_time": True},
             ParameterFile(PathJoinSubstitution([FindPackageShare("bringup"), "config", "controllers.yaml"])),
+            ParameterFile(PathJoinSubstitution([FindPackageShare("bringup"), "config", "mujoco_parameters.yaml"])),
         ],
     )
 
