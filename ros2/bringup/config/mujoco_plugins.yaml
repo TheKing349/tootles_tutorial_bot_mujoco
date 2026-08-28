@@ -3,7 +3,7 @@
     mujoco_plugins:
       mujoco_3d_lidar_plugin:
         type: "mujoco_ros2_control_plugins/Mujoco3dLidarPlugin"
-        2d_lidar:
+        lidar:
           frame_name: lidar_link_optical
           topic: /scan
       mujoco_camera_plugin:

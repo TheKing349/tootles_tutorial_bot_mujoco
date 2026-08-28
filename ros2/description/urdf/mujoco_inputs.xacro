@@ -22,6 +22,23 @@
         <velocity name="back_left_wheel_joint" joint="back_left_wheel_joint" kv="20" forcerange="-50 50"/>
         <velocity name="back_right_wheel_joint" joint="back_right_wheel_joint" kv="20" forcerange="-50 50"/>
       </actuator>
+      <extension>
+        <plugin plugin="mujoco.plugin.lidar">
+          <instance name="lidar">
+            <config key="resolution" value="360 1"/>
+            <config key="azimuth_range" value="-3.14159 3.14159"/>
+            <config key="elevation_range" value="0.0"/>
+            <config key="max_range" value="10.0"/>
+            <config key="min_range" value="0.1"/>
+          </instance>
+        </plugin>
+      </extension>
+
+      <option integrator="implicitfast"/>
+
+      <sensor>
+        <plugin name="lidar" instance="lidar" objtype="site" objname="lidar_link_optical"/>
+      </sensor>
     </raw_inputs>
 
     <!-- Specific inputs that require processing from the conversion script-->
