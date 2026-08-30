@@ -15,18 +15,17 @@ def generate_launch_description():
 
     base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            PathJoinSubstitution([FindPackageShare("bringup"), "launch", "sim", "base.launch.py"])
+            PathJoinSubstitution([FindPackageShare("sim"), "launch", "base.launch.py"])
         ),
         launch_arguments={"use_gazebo": "true"}.items(),
     )
 
     # Locate the config file
-    # Ensure 'bringup' matches your actual package name where the yaml is stored
     bridge_params = PathJoinSubstitution(
-      [FindPackageShare("bringup"), "config", "gz_bridge.yaml"]
+      [FindPackageShare("sim"), "config", "gz_bridge.yaml"]
     )
 
-    gazebo_world = PathJoinSubstitution([FindPackageShare("description"), "worlds", world])
+    gazebo_world = PathJoinSubstitution([FindPackageShare("sim"), "worlds", world])
 
     # Start environment
     gazebo = IncludeLaunchDescription(
