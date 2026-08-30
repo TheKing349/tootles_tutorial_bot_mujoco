@@ -106,6 +106,13 @@ RUN CTRE_LIB_PATH=$(dirname $(find /usr -name "libCTRE_Phoenix6.so" | head -n 1)
     echo "$CTRE_LIB_PATH" > /etc/ld.so.conf.d/ctre.conf && \
     ldconfig
 
+#################### VirtualGL ####################
+RUN wget -q -O- https://packagecloud.io/dcommander/virtualgl/gpgkey | \
+  gpg --dearmor >/etc/apt/trusted.gpg.d/VirtualGL.gpg
+RUN wget -O /etc/apt/sources.list.d/VirtualGL.list https://raw.githubusercontent.com/VirtualGL/repo/main/VirtualGL.list
+
+RUN apt-get update && apt-get install -y --no-install-recommends virtualgl
+
 #################### USER SETUP ####################
 ARG USERNAME=ubuntu
 ARG USER_UID=1000

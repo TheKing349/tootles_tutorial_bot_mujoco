@@ -16,12 +16,12 @@ def generate_launch_description():
 
     base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            PathJoinSubstitution([FindPackageShare("bringup"), "launch", "sim", "base.launch.py"])
+            PathJoinSubstitution([FindPackageShare("sim"), "launch", "base.launch.py"])
         ),
         launch_arguments={"use_gazebo": "false"}.items()
     )
 
-    mujoco_scene = PathJoinSubstitution([FindPackageShare("description"), "worlds", world])
+    mujoco_scene = PathJoinSubstitution([FindPackageShare("sim"), "worlds", world])
 
     mujoco_robot_description = Node(
         package="mujoco_ros2_control",
@@ -41,7 +41,7 @@ def generate_launch_description():
         parameters=[
             {"use_sim_time": True},
             ParameterFile(PathJoinSubstitution([FindPackageShare("bringup"), "config", "controllers.yaml"])),
-            ParameterFile(PathJoinSubstitution([FindPackageShare("bringup"), "config", "mujoco_plugins.yaml"])),
+            ParameterFile(PathJoinSubstitution([FindPackageShare("sim"), "config", "mujoco_plugins.yaml"])),
         ],
     )
 
