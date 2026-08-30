@@ -22,7 +22,7 @@ setup(
         (os.path.join("share", package_name, "worlds", "meshes", "artemis_arena", "arena_pipe"), glob("worlds/meshes/artemis_arena/arena_pipe/*.*")),
         (os.path.join("share", package_name, "worlds", "meshes", "artemis_arena", "arena_walls"), glob("worlds/meshes/artemis_arena/arena_walls/*.*")),
         (os.path.join("share", package_name, "worlds", "meshes", "artemis_arena", "arena_window_frames"), glob("worlds/meshes/artemis_arena/arena_window_frames/*.*")),
-        (os.path.join("share", package_name, "worlds", "meshes", "artemis_arena", "arena_window"), glob("worlds/meshes/artemis_arena/arena_window/*.*")),
+        (os.path.join("share", package_name, "worlds", "meshes", "artemis_arena", "arena_windows"), glob("worlds/meshes/artemis_arena/arena_windows/*.*")),
         (os.path.join("share", package_name, "worlds", "meshes", "artemis_arena", "column"), glob("worlds/meshes/artemis_arena/column/*.*")),
         (os.path.join("share", package_name, "worlds", "meshes", "artemis_arena", "lunar_surface"), glob("worlds/meshes/artemis_arena/lunar_surface/*.*")),
         (os.path.join("share", package_name, "worlds", "meshes", "artemis_arena", "lunar_surface2"), glob("worlds/meshes/artemis_arena/lunar_surface2/*.*")),
