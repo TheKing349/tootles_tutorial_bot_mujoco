@@ -54,7 +54,6 @@
     <ros2_control name="MujocoSystem" type="system">
       <hardware>
         <plugin>mujoco_ros2_control/MujocoSystemInterface</plugin>
-        <param name="mujoco_model_topic">/mujoco_robot_description</param>
       </hardware>
       <joint name="front_left_wheel_joint">
         <command_interface name="velocity">
