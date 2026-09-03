@@ -34,8 +34,6 @@
         </plugin>
       </extension>
 
-      <option integrator="implicitfast"/>
-
       <sensor>
         <plugin name="lidar" instance="lidar" objtype="site" objname="lidar_link_optical"/>
       </sensor>
